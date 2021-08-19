@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts App</title>
+</head>
+{# Load the tag library #}
+{% load django_bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}">Posts app</a>
+        {% if user.is_authenticated %}
+            <div class="nav navbar-nav navbar-right">
+                <span class="navbar-text">logged in as {{ request.user.username }}</span>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Log out</a>
+            </div>
+        {% else %}
+            <div class="nav navbar-nav navbar-right ml-auto">
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+            </div>
+        {% endif %}
+    </div>
+</nav>
+<div class="d-flex flex-column align-items-center mt-2">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>

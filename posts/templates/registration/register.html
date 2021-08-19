@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+    <div class="p-4">
+        <h2 class="text-center">Sign up</h2>
+        <form method="post" class="form">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="text-center">
+                {% bootstrap_button button_type="submit" content="Register" %}
+            </div>
+        </form>
+    </div>
+{% endblock content %}
